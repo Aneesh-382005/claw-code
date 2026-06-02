@@ -57,6 +57,13 @@ ollama serve
 In another shell:
 
 ```bash
+export OLLAMA_HOST="http://127.0.0.1:11434"
+claw --model "qwen2.5-coder:7b" prompt "say hello"
+```
+
+`OLLAMA_HOST` is now the preferred env var for Ollama. The older `OPENAI_BASE_URL` + `OPENAI_API_KEY` workaround is also supported for existing setups that already rely on the OpenAI-compatible path.
+
+```bash
 export OPENAI_BASE_URL="http://127.0.0.1:11434/v1"
 export OPENAI_API_KEY="local-dev-token"
 claw --model "qwen3:latest" prompt "Reply exactly HELLO_WORLD_123"
