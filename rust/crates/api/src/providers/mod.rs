@@ -339,6 +339,10 @@ pub fn provider_diagnostics_for_model(model: &str) -> ProviderDiagnostics {
 
 #[must_use]
 pub fn detect_provider_kind(model: &str) -> ProviderKind {
+    if std::env::var_os("OLLAMA_HOST").is_some() {
+        return ProviderKind::OpenAi;
+    }
+
     if let Some(metadata) = metadata_for_model(model) {
         return metadata.provider;
     }
